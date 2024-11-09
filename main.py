@@ -15,3 +15,14 @@ class Game:
     def update_game(self):
         py.display.flip()
         self.clock.tick(FPS)
+        py.display.set_caption(f'{self.clock.get_fps():.1f}')
+
+    def draw_screen(self):
+        self.screen.fill('black')
+
+    def check_events(self):
+
+    def run(self):
+        while True:
+            self.update_game()
+            self.draw_screen()
