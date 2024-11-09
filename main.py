@@ -2,7 +2,7 @@ import pygame as py
 import sys
 from settings import *
 
-#creating a class
+#creating class
 class Game:
     def __init__(self):
         py.init()
@@ -21,8 +21,17 @@ class Game:
         self.screen.fill('black')
 
     def check_events(self):
+        for event in py.event.get():
+            if event.type == py.QUIT:
+                py.quit()
+                sys.exit()
 
     def run(self):
         while True:
+            self.check_events()
             self.update_game()
             self.draw_screen()
+
+if __name__ == '__main__':
+    game = Game()
+    game.run()
