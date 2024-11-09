@@ -14,8 +14,8 @@ class Game:
 
     def update_game(self):
         py.display.flip()
-        self.clock.tick(FPS)
-        py.display.set_caption(f'{self.clock.get_fps():.1f}')
+        self.clock.tick(FPS)    #setting up FPS limit
+        py.display.set_caption(f'{int(self.clock.get_fps())}')
 
     def draw_screen(self):
         self.screen.fill('black')
