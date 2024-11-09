@@ -1,6 +1,7 @@
 import pygame as py
 import sys
 from settings import *
+from map import *
 
 #creating class
 class Game:
@@ -8,9 +9,10 @@ class Game:
         py.init()
         self.screen = py.display.set_mode(RES)
         self.clock = py.time.Clock()
+        self.new_game()
 
     def new_game(self):
-        pass
+        self.map = Map(self)
 
     def update_game(self):
         py.display.flip()
@@ -19,6 +21,7 @@ class Game:
 
     def draw_screen(self):
         self.screen.fill('black')
+        self.map.draw_map()
 
     def check_events(self):
         for event in py.event.get():
