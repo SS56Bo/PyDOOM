@@ -9,6 +9,7 @@ class Game:
         py.init()
         self.screen = py.display.set_mode(RES)
         self.clock = py.time.Clock()
+        self.delta_time = 1
         self.new_game()
 
     def new_game(self):
@@ -16,7 +17,7 @@ class Game:
 
     def update_game(self):
         py.display.flip()
-        self.clock.tick(FPS)    #setting up FPS limit
+        self.delta_time = self.clock.tick(FPS)    #setting up FPS limit
         py.display.set_caption(f'PyDOOM | Frames:{int(self.clock.get_fps())}')
 
     def draw_screen(self):
