@@ -2,6 +2,7 @@ import pygame as py
 import sys
 from settings import *
 from map import *
+from player import *
 
 #creating class
 class Game:
@@ -14,8 +15,10 @@ class Game:
 
     def new_game(self):
         self.map = Map(self)
+        self.player = Player(self)
 
     def update_game(self):
+        self.player.update()
         py.display.flip()
         self.delta_time = self.clock.tick(FPS)    #setting up FPS limit
         py.display.set_caption(f'PyDOOM | Frames:{int(self.clock.get_fps())}')
@@ -23,6 +26,7 @@ class Game:
     def draw_screen(self):
         self.screen.fill('black')
         self.map.draw_map()
+        self.player.draw_player()
 
     def check_events(self):
         for event in py.event.get():
