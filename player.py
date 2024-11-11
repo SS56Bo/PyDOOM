@@ -1,6 +1,7 @@
 import pygame as py
 import math
 from settings import *
+from map import *
 
 class Player:
     def __init__(self, game):
@@ -15,6 +16,8 @@ class Player:
         speed = PLAYER_SPEED *  self.game.delta_time
         speed_sine = speed*sin_pos
         speed_cos = speed*cos_pos
+
+        self.collision_check(dx, dy)
 
         keys = py.key.get_pressed()
         if keys[py.K_w]:    #W key
@@ -33,13 +36,12 @@ class Player:
             dx += -speed_sine
             dy += speed_cos
             
-        self.x += dx
-        self.y += dy
+        self.collision_check(dx, dy)
 
         if keys[py.K_LEFT]:
             self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
         if keys[py.K_RIGHT]:
-            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau
 
     def draw_player(self):
@@ -48,6 +50,15 @@ class Player:
 
     def update(self):
         self.player_movement()
+
+    def collision_check(self, dx, dy):
+        if self.wall_check(int(self.x+dx), int(self.y)):
+            self.x+=dx
+        if self.wall_check(int(self.x), int(self.y+dy)):
+            self.y+=dy 
+
+    def wall_check(self, x, y):
+        return (x,y) not in self.game.map.world_map
 
     @property
     def position(self):
