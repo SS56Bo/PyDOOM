@@ -8,7 +8,7 @@ FPS = 60
 PLAYER_POS = 1.0, 2.0
 PLAYER_ANGLE = 0
 PLAYER_SPEED = 0.004
-PLAYER_ROT_SPEED = 0.0002
+PLAYER_ROT_SPEED = 0.001
 
 #raycasting settings
 FOV = math.pi/3
