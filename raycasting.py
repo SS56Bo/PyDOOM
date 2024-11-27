@@ -33,6 +33,32 @@ class RayCasting:
                 y_vert+=dy
                 depth_vert+=delta_depth
 
+            #horizontal
+            y_hor, dy= (y_map+1,1) if sin_a>0 else (y_map-1e-6, -1)
+
+            depth_hor = (y_hor-oy)/sin_a
+            x_hor = ox+depth_hor*cos_a
+
+            delta_depth = dy/sin_a
+            dx= delta_depth*cos_a
+
+            for i in range(MAX_DEPTH):
+                tile_hor = int(x_hor), int(y_hor)
+                if tile_hor in self.game.map.world_map:
+                    break
+                x_hor+=dx
+                y_hor+=dy
+                depth_hor+=delta_depth
+
+            #for setting a specified depth
+            if depth_hor<depth_vert:
+                depth=depth_hor
+            else:
+                depth=depth_vert
+
+            #drawing lines for depth sensing
+            py.draw.line(self.game.screen, 'purple', (ox*100, oy *100), (ox*100+100*depth*cos_a, oy*100+100*depth*sin_a), 2)
+
             ray_angle+=DELTA_ANGLE
 
     def update_ray(self):
