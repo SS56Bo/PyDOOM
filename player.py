@@ -20,7 +20,7 @@ class Player:
         self.collision_check(dx, dy)
 
         keys = py.key.get_pressed()
-        if keys[py.K_w]:    #W key
+        if keys[py.K_w]:   #W key
             dx += speed_cos
             dy += speed_sine
         
@@ -28,11 +28,11 @@ class Player:
             dx += -speed_cos
             dy += -speed_sine
 
-        if keys[py.K_a]:
+        if keys[py.K_a]:   #A key
             dx += speed_sine
             dy += -speed_cos
 
-        if keys[py.K_d]:
+        if keys[py.K_d]:   #D key
             dx += -speed_sine
             dy += speed_cos
             
@@ -45,7 +45,7 @@ class Player:
         self.angle %= math.tau
 
     def draw_player(self):
-        py.draw.line(self.game.screen, 'purple', (self.x*100, self.y *100), (self.y *100+WIDTH*math.cos(self.angle), self.x *100+WIDTH*math.sin(self.angle)), 2)
+        # py.draw.line(self.game.screen, 'purple', (self.x*100, self.y *100), (self.y *100+WIDTH*math.cos(self.angle), self.x *100+WIDTH*math.sin(self.angle)), 2)
         py.draw.circle(self.game.screen, 'gray', (self.x*100, self.y*100), 15)
 
     def update(self):
