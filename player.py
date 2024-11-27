@@ -38,14 +38,14 @@ class Player:
             
         self.collision_check(dx, dy)
 
-        if keys[py.K_LEFT]:
+        if keys[py.K_q]:
             self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-        if keys[py.K_RIGHT]:
+        if keys[py.K_e]:
             self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= math.tau
 
     def draw_player(self):
-        py.draw.line(self.game.screen, 'yellow', (self.x*100, self.y *100), (self.y *100+WIDTH*math.cos(self.angle), self.x *100+WIDTH*math.sin(self.angle)), 2)
+        py.draw.line(self.game.screen, 'purple', (self.x*100, self.y *100), (self.y *100+WIDTH*math.cos(self.angle), self.x *100+WIDTH*math.sin(self.angle)), 2)
         py.draw.circle(self.game.screen, 'gray', (self.x*100, self.y*100), 15)
 
     def update(self):
