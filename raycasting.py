@@ -11,7 +11,6 @@ class RayCasting:
         x_map, y_map = self.game.player.map_position
 
         ray_angle = self.game.player.angle - HALF_FOV + 0.001
-        print(ray_angle)
         for ray in range(NUM_RAYS):
             sin_a = math.sin(ray_angle)
             cos_a = math.cos(ray_angle)
@@ -56,8 +55,14 @@ class RayCasting:
             else:
                 depth=depth_vert
 
+            #projection rendered
+            proj_height = FIELD_VIEW/(depth+0.0001)
+
+            #draw walls
+            py.draw.rect(self.game.screen, 'red', (ray*SCALE, HALF_HEIGHT-proj_height//2, SCALE, proj_height))
+
             #drawing lines for depth sensing
-            py.draw.line(self.game.screen, 'purple', (ox*100, oy *100), (ox*100+100*depth*cos_a, oy*100+100*depth*sin_a), 2)
+            #py.draw.line(self.game.screen, 'purple', (ox*100, oy *100), (ox*100+100*depth*cos_a, oy*100+100*depth*sin_a), 2)
 
             ray_angle+=DELTA_ANGLE
 

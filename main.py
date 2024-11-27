@@ -28,8 +28,8 @@ class Game:
 
     def draw_screen(self):
         self.screen.fill('black')
-        self.map.draw_map()
-        self.player.draw_player()
+        # self.map.draw_map()
+        # self.player.draw_player()
 
     def check_events(self):
         for event in py.event.get():
