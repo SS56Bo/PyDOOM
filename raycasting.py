@@ -59,7 +59,8 @@ class RayCasting:
             proj_height = FIELD_VIEW/(depth+0.0001)
 
             #draw walls
-            py.draw.rect(self.game.screen, 'white', (ray*SCALE, HALF_HEIGHT-proj_height//2, SCALE, proj_height))
+            color = [255/(1+depth**5*0.00002)]*3
+            py.draw.rect(self.game.screen, color, (ray*SCALE, HALF_HEIGHT-proj_height//2, SCALE, proj_height))
 
             #drawing lines for depth sensing
             #py.draw.line(self.game.screen, 'purple', (ox*100, oy *100), (ox*100+100*depth*cos_a, oy*100+100*depth*sin_a), 2)
