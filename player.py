@@ -23,25 +23,31 @@ class Player:
         if keys[py.K_w]:   #W key
             dx += speed_cos
             dy += speed_sine
+            print("W key!")
         
         if keys[py.K_s]:   #S key
             dx += -speed_cos
             dy += -speed_sine
+            print("S key!")
 
         if keys[py.K_a]:   #A key
             dx += speed_sine
             dy += -speed_cos
+            print("A key!")
 
         if keys[py.K_d]:   #D key
             dx += -speed_sine
             dy += speed_cos
+            print("D key!")
             
         self.collision_check(dx, dy)
 
         if keys[py.K_q]:
             self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
+            print("Q key!")
         if keys[py.K_e]:
             self.angle += PLAYER_ROT_SPEED * self.game.delta_time
+            print("E key!")
         self.angle %= math.tau
 
     def draw_player(self):
